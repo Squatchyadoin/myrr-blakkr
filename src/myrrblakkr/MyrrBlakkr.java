@@ -11,6 +11,7 @@ import byui.cit260.myrrBlakkr.model.Game;
 import byui.cit260.myrrBlakkr.model.Location;
 import byui.cit260.myrrBlakkr.model.Map;
 import byui.cit260.myrrBlakkr.model.MonsterNPC;
+import byui.cit260.myrrBlakkr.model.NormalScene;
 import byui.cit260.myrrBlakkr.model.Player; // needed for each class referenced from another package. L3, pg 18
 import byui.cit260.myrrBlakkr.model.TrapScene;
 
@@ -140,6 +141,22 @@ public class MyrrBlakkr {
         // calling toString() function returns a string representation of the values of all the object instance variables created for the trapSceneOne object and saves the values in a String type variable, TrapSceneInfo
         String trapSceneInfo = trapSceneOne.toString();
         System.out.println(trapSceneInfo); // displays results to the console
+        
+        
+        NormalScene normalSceneOne = new NormalScene(); // creates a new object instance
+
+        // programmer-developed info for testing purposes
+        normalSceneOne.setDescription("You enter a dark room with water dripping in the distance. The walls are slick and covered in a pungent, oily, black slime. A slurping sound can also be heard just out of sight in the dark.");
+        normalSceneOne.setTravelTime(2.57);        
+        normalSceneOne.setNoMonsters(0);
+        normalSceneOne.setNoItems(2);
+        normalSceneOne.setNoTreasures(1);
+        normalSceneOne.setNoLocks(2);
+        normalSceneOne.setNoTraps(1);
+
+        // calling toString() function returns a string representation of the values of all the object instance variables created for the normalSceneOne object and saves the values in a String type variable, NormalSceneInfo
+        String normalSceneInfo = normalSceneOne.toString();
+        System.out.println(normalSceneInfo); // displays results to the console
         
     }
         
