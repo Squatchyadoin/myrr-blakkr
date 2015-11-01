@@ -14,12 +14,16 @@ import byui.cit260.myrrBlakkr.model.MonsterNPC;
 import byui.cit260.myrrBlakkr.model.NormalScene;
 import byui.cit260.myrrBlakkr.model.Player; // needed for each class referenced from another package. L3, pg 18
 import byui.cit260.myrrBlakkr.model.TrapScene;
+import byui.cit260.myrrBlakkr.view.StartProgramView;
 
 /**
  *
  * @author Family
  */
 public class MyrrBlakkr {
+    
+    private static Game currentGame = null;
+    private static Player player = null;
 
     /**
      * @param args the command line arguments
@@ -158,7 +162,31 @@ public class MyrrBlakkr {
         String normalSceneInfo = normalSceneOne.toString();
         System.out.println(normalSceneInfo); // displays results to the console
         
-    }
         
+        // create StartProgramView and start the program
+        StartProgramView startProgramView = new StartProgramView(); // new object instance
+        startProgramView.startProgram(); // call - default constructor
+        
+    // Getter & Setter    
+    }
+
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game currentGame) {
+        MyrrBlakkr.currentGame = currentGame;
+    }
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        MyrrBlakkr.player = player;
+    }
+    
+    
+    
 }
 
