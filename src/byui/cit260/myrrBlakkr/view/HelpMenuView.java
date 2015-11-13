@@ -1,19 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * View class for the Help Menu
  */
-package byui.cit260.myrrBlakkr.view;
 
-import java.util.Scanner;
+package byui.cit260.myrrBlakkr.view;
 
 /**
  *
  * @author Family
  */
-public class HelpMenuView {
+public class HelpMenuView extends View {
   
-    private final String MENU = "\n"
+    public HelpMenuView() {
+        super("\n"
         + "\n-------------------------------------------------------------"
         + "\n|                         Help Menu                         |"
         + "\n-------------------------------------------------------------"
@@ -24,75 +22,44 @@ public class HelpMenuView {
         + "\n| T -  Disarming traps                                      |"
         + "\n| F -  Fighting enemies                                     |"
         + "\n| Q -  Quit the current menu                                |"
-        + "\n-------------------------------------------------------------";
-    
-    public void displayMenu() {
-        char selection = ' ';
-        do {
-            System.out.println(MENU); // display the Help menu
-            
-            String input = this.getInput(); // get the user's selection
-            selection = input.charAt(0); // get first character of a string
-            
-            this.doAction(selection); // do action based on selection
-            
-        } while (selection != 'Q'); // selection is not "Quit current menu"
-    }
-
-    private String getInput() {        
-        boolean valid = false; // indicates if the menu selection has been retrieved
-        String menuSelection = null;
-        Scanner keyboard = new Scanner(System.in); // keyboard input stream
-        
-        while (!valid) { // while a valid menu selection has not been retrieved
-            
-            // prompt for a menu selection
-            System.out.println("\nPlease make a selection:");
-            
-            // get the menu selection from the keyboard and trim off the blanks
-            menuSelection = keyboard.nextLine();
-            menuSelection = menuSelection.trim();
-            
-            // if the menu selection is invalid (cannot be blank or > 1 char in length)
-            if (menuSelection.length() != 1) {
-                System.out.println("[Invalid selection - choose from the listed options]");
-                continue; // and repeat the loop again
-            }
-            break; // breaks out of the loop          
-        }
-        
-        return menuSelection; // return the menu selection    
+        + "\n-------------------------------------------------------------");
     }
     
-    private void doAction(char selection) {
+    
+    @Override
+    public boolean doAction(Object obj) {        
+        String value = (String) obj;        
+        value = value.toUpperCase();        // convert to all upper case
+        char selection = value.charAt(0);   // get first character entered
         
         switch (selection) {
-            case 'G':                   // game goals & how to play
+            case 'G':                       // game goals & how to play            
                 this.displayHowToPlay();
                 break;
-            case 'M':                   // how to move
+            case 'M':                       // how to move
                 this.displayPlayerMovementHelp();
                 break;
-            case 'I':                   // managing inventory
+            case 'I':                       // managing inventory
                 this.displayInventoryManagementHelp();
                 break;
-            case 'L':                   // picking locks
+            case 'L':                       // picking locks
                 this.displayLockPickingHelp();
                 break;
-            case 'T':                   // disarming traps
+            case 'T':                       // disarming traps
                 this.displayTrapDisarmingHelp();
-                break;
-            case 'F':                   // fighting enemies
+            case 'F':                       // fighting enemies
                 this.displayCombatHelp();
                 break;
             case 'Q':
-                return;
+                return true;
             default:
                 System.out.println("\n*** Invalid selection *** Try again");
                 break;
         }
+        return false;
     } 
-
+    
+    
     private void displayHowToPlay() {
         System.out.println("\n-------------------------------------------------------------"                   
                     + "\n|                        How To Play                        |"

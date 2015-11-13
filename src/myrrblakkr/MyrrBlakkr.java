@@ -5,16 +5,16 @@
  */
 package myrrblakkr;
 
-import byui.cit260.myrrBlakkr.model.ActorNPC;
+import byui.cit260.myrrBlakkr.model.Enemy;
 import byui.cit260.myrrBlakkr.model.FightScene;
 import byui.cit260.myrrBlakkr.model.Game;
 import byui.cit260.myrrBlakkr.model.Location;
 import byui.cit260.myrrBlakkr.model.Map;
 import byui.cit260.myrrBlakkr.model.MonsterNPC;
 import byui.cit260.myrrBlakkr.model.NormalScene;
-import byui.cit260.myrrBlakkr.model.Player; // needed for each class referenced from another package. L3, pg 18
+import byui.cit260.myrrBlakkr.model.Player;             // needed for each class referenced from another package. L3, pg 18
 import byui.cit260.myrrBlakkr.model.TrapScene;
-import byui.cit260.myrrBlakkr.view.StartProgramView;
+import byui.cit260.myrrBlakkr.view.StartProgramView; // only import statement needed in final draft
 
 /**
  *
@@ -30,13 +30,19 @@ public class MyrrBlakkr {
      */
     public static void main(String[] args) {
         
-        // TEST CASES
-        // This method recommend by Bro Jones. Ensures main() function doesn't become full of Test Cases.
-        runTestCases1();        
-        //runTestCases2(); [Save and use later.]
+        // create StartProgramView and start the program
+        StartProgramView startProgramView = new StartProgramView(); // new object instance
+        startProgramView.startProgram(); // call - default constructor
         
+        // This method recommend by Bro Jones. Ensures main() function doesn't become full of Test Cases.
+        /*
+        runTestCases1();        
+        */
+                
     }
-
+    
+    // TEST CASES (Delete for final draft)
+    
     private static void runTestCases1() {
 
         Player playerOne = new Player(); // creates a new instance of a class
@@ -56,7 +62,7 @@ public class MyrrBlakkr {
         System.out.println(playerInfo); // displays results to the console. L3, pg 19
 
         
-        ActorNPC npcOne = new ActorNPC(); // creates a new instance of the ActorNPC class
+        Enemy npcOne = new Enemy(); // creates a new instance of the Enemy class
 
         // programmer-developed info for testing purposes
         npcOne.setName("Heimdall");
@@ -162,14 +168,11 @@ public class MyrrBlakkr {
         String normalSceneInfo = normalSceneOne.toString();
         System.out.println(normalSceneInfo); // displays results to the console
         
-        
-        // create StartProgramView and start the program
-        StartProgramView startProgramView = new StartProgramView(); // new object instance
-        startProgramView.startProgram(); // call - default constructor
-        
-    // Getter & Setter    
+       
     }
-
+    
+    
+    // Getter & Setter 
     public static Game getCurrentGame() {
         return currentGame;
     }
@@ -184,8 +187,7 @@ public class MyrrBlakkr {
 
     public static void setPlayer(Player player) {
         MyrrBlakkr.player = player;
-    }
-    
+    }    
     
     
 }

@@ -6,16 +6,19 @@
 package byui.cit260.myrrBlakkr.view;
 
 //import byui.cit260.myrrBlakkr.control.GameControl;
-import java.util.Scanner;
-import myrrblakkr.MyrrBlakkr;
+import byui.cit260.myrrBlakkr.model.Player;
+
 
 /**
  *
  * @author Family
  */
-public class GameMenuView {
+public class GameMenuView extends View {
+    
+    //private Player currentPlayer;
 
-    private final String MENU = "\n"
+    public GameMenuView() {        
+        super("\n"
             + "\n-------------------------------------------------------------"
             + "\n|                         Game Menu                         |"
             + "\n-------------------------------------------------------------"
@@ -30,82 +33,50 @@ public class GameMenuView {
             + "\n|                                                           |"
             + "\n| H -  Help menu                                            |"
             + "\n| Q -  Quit current menu                                    |"
-            + "\n-------------------------------------------------------------";
+            + "\n-------------------------------------------------------------");
+    }
     
-    public void displayMenu() {
-        char selection = ' ';
-        do {
-            System.out.println(MENU); // display the Game menu
-            
-            String input = this.getInput(); // get the user's selection
-            selection = input.charAt(0); // get first character of a string
-            
-            this.doAction(selection); // do action based on selection
-            
-        } while (selection != 'Q'); // selection is not "Quit current menu"
-    }
-
-    private String getInput() {        
-        boolean valid = false; // indicates if the menu selection has been retrieved
-        String menuSelection = null;
-        Scanner keyboard = new Scanner(System.in); // keyboard input stream
-        
-        while (!valid) { // while a valid menu selection has not been retrieved
-            
-            // prompt for a menu selection
-            System.out.println("\nPlease make a selection:");
-            
-            // get the menu selection from the keyboard and trim off the blanks
-            menuSelection = keyboard.nextLine();
-            menuSelection = menuSelection.trim();
-            
-            // if the menu selection is invalid (cannot be blank or > 1 char in length)
-            if (menuSelection.length() != 1) {
-                System.out.println("[Invalid selection - choose from the listed options]");
-                continue; // and repeat the loop again
-            }
-            break; // breaks out of the loop          
-        }
-        
-        return menuSelection; // return the menu selection    
-    }
-
-    private void doAction(char selection) {
+    @Override
+    public boolean doAction(Object obj) {        
+        String value = (String) obj;        
+        value = value.toUpperCase();        // convert to all upper case
+        char selection = value.charAt(0);   // get first character entered
         
         switch (selection) {
-            case 'S': // search a room or area
+            case 'S':                       // search a room or area
                 this.searchRoom();
                 break;
-            case 'I': 
+            case 'I':
                 this.displayInventoryMenu();
                 break;
-            case 'P': 
+            case 'P':
                 this.pickUpItem();
                 break;
-            case 'U': 
+            case 'U':
                 this.useItem();
                 break;
-            case 'L': 
+            case 'L':
                 this.displayLockMenu();
                 break;
-            case 'T': 
+            case 'T':
                 this.displayTrapMenu();
                 break;
-            case 'M': 
+            case 'M':
                 this.displayMapMenu();
                 break;
-            case 'F': 
+            case 'F':
                 this.displayCombatMenu();
                 break;
-            case 'H': 
+            case 'H':
                 this.displayHelpMenu();
                 break;
             case 'Q':
-                return;
+                return true;
             default:
                 System.out.println("\n*** Invalid selection *** Try again");
                 break;
         }
+        return false;
     }
     
 
@@ -130,7 +101,9 @@ public class GameMenuView {
     }
 
     private void displayTrapMenu() {
-        System.out.println("*** displayTrapMenu function called ***");
+        // display the Trap menu
+        TrapMenuView trapMenu = new TrapMenuView();
+        trapMenu.displayMenu();
     }
 
     private void displayMapMenu() {
@@ -138,11 +111,16 @@ public class GameMenuView {
     }
 
     private void displayCombatMenu() {
-        System.out.println("*** displayCombatMenu function called ***");
+        // display the Combat menu
+        CombatMenuView combatMenu = new CombatMenuView();
+        combatMenu.display();
+        //combatMenu.display(currentPlayer);
     }
 
     private void displayHelpMenu() {
-        System.out.println("*** displayHelpMenu function called ***");
+        // display the Help menu
+        HelpMenuView helpMenu = new HelpMenuView();
+        helpMenu.display();
     }
 
 }

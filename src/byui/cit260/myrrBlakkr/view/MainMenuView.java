@@ -1,21 +1,20 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * View class for Main Menu end user story 
  */
+
 package byui.cit260.myrrBlakkr.view;
 
+import byui.cit260.myrrBlakkr.control.Controls;
 import byui.cit260.myrrBlakkr.control.GameControl;
-import java.util.Scanner;
+import byui.cit260.myrrBlakkr.model.Player;
 import myrrblakkr.MyrrBlakkr;
 
-/**
- *
- * @author Family
- */
-public class MainMenuView {
+public class MainMenuView extends View {
+    
+    private Player currentPlayer;
 
-    private final String MENU = "\n"
+    public MainMenuView() {
+        super("\n"
             + "\n-------------------------------------------------------------"
             + "\n|                         Main Menu                         |"
             + "\n-------------------------------------------------------------"
@@ -24,86 +23,52 @@ public class MainMenuView {
             + "\n| S -  Save game                                            |"
             + "\n| L -  Load saved game                                      |"
             + "\n| Q -  Quit game                                            |"
-            + "\n-------------------------------------------------------------";
+            + "\n-------------------------------------------------------------");
+    }
     
-    public void displayMenu() {
-        char selection = ' ';
-        do {
-            System.out.println(MENU); // display the Main menu
-            
-            String input = this.getInput(); // get the user's selection
-            selection = input.charAt(0); // get first character of a string
-            
-            this.doAction(selection); // do action based on selection
-            
-        } while (selection != 'Q'); // selection is not "Quit game"
-    }
-
-    private String getInput() {        
-        boolean valid = false; // indicates if the menu selection has been retrieved
-        String menuSelection = null;
-        Scanner keyboard = new Scanner(System.in); // keyboard input stream
-        
-        while (!valid) { // while a valid menu selection has not been retrieved
-            
-            // prompt for a menu selection
-            System.out.println("\nPlease make a selection:");
-            
-            // get the menu selection from the keyboard and trim off the blanks
-            menuSelection = keyboard.nextLine();
-            menuSelection = menuSelection.trim();
-            
-            // if the menu selection is invalid (cannot be blank or > 1 char in length)
-            if (menuSelection.length() != 1) {
-                System.out.println("[Invalid selection - choose from the listed options]");
-                continue; // and repeat the loop again
-            }
-            break; // breaks out of the loop          
-        }
-        
-        return menuSelection; // return the menu selection    
-    }
-
-    private void doAction(char selection) {
+    @Override
+    public boolean doAction(Object obj) {        
+        String value = (String) obj;        
+        value = value.toUpperCase();        // convert to all upper case
+        char selection = value.charAt(0);   // get first character entered        
         
         switch (selection) {
-            case 'N': // create and start a new game
+            case 'N':                       // create and start a new game            
                 this.newGame();
                 break;
-            case 'H': 
-                this.displayHelpMenu();
+            case 'H':            
+                this.displayHelpMenu();     // display the Help menu
                 break;
-            case 'S': 
-                this.saveGame();
+            case 'S':            
+                this.saveGame();            // save the game
+            case 'L':            
+                this.loadGame();            // load a saved game
                 break;
-            case 'L': 
-                this.loadGame();
-                break;
-            case 'Q':
-                return;
+            case 'Q':                       // quit the game
+                return true;
             default:
                 System.out.println("\n*** Invalid selection *** Try again");
                 break;
         }
-    }            
-
-    private void newGame() {
-        // create a new game
-        GameControl.newGame(MyrrBlakkr.getPlayer());
-        
-        // display the Game menu
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();                
+        return false;
     }
 
-    private void displayHelpMenu() {
-        // display the Help menu
-        HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayMenu(); 
+    private void newGame() {                                                    
+        GameControl.newGame(MyrrBlakkr.getPlayer());    // create a new game
+        GameMenuView gameMenu = new GameMenuView();     
+        gameMenu.display();                             // display the Game menu for the current player
+    }
+
+    private void displayHelpMenu() {        
+        HelpMenuView helpMenu = new HelpMenuView();     // create a new Help menu
+        helpMenu.display();                             // display the Help menu
     }
 
     private void saveGame() {
-        System.out.println("*** saveGame function called ***");
+        GameControl.saveGame(MyrrBlakkr.getCurrentGame());    // save the game
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();                                   // display the Game menu
+        //gameMenu.display(currentPlayer);
     }
 
     private void loadGame() {

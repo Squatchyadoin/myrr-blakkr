@@ -1,18 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * View class for Start Program end user story 
  */
+
 package byui.cit260.myrrBlakkr.view;
 
 import byui.cit260.myrrBlakkr.control.ProgramControl;
 import byui.cit260.myrrBlakkr.model.Player;
 import java.util.Scanner;
 
-/**
- *
- * @author Family
- */
 public class StartProgramView {
     
     public StartProgramView() {
@@ -26,8 +21,10 @@ public class StartProgramView {
         // Prompt the player to enter a name
         // Retrieve the name of the player
         String playersName = this.getPlayersName();
+        if (playersName == null) // IF user wants to quit the game
+            return; // THEN exit the game
         
-        // Create and save the player object
+        // Create the player object and save it in the ProgramControl class
         Player player = ProgramControl.createPlayer(playersName);
         
         // DISPLAY a customized welcome message
@@ -35,7 +32,7 @@ public class StartProgramView {
         
         // DISPLAY the main menu
         MainMenuView mainMenu = new MainMenuView();
-        mainMenu.displayMenu();
+        mainMenu.display();
     
     } 
 
@@ -91,7 +88,7 @@ public class StartProgramView {
                          + "\n* tasked with exploring the tunnel.                         *");            
         
         System.out.println("*                                                           *"
-                         + "\n* As the party’s thief, you will play a specific role in     *"
+                         + "\n* As the party’s thief, you will play a specific role in    *"
                          + "\n* finding any hidden doors, compartments, traps, or snares  *"
                          + "\n* that await your intrepid group. You are also tasked with  *"
                          + "\n* unlocking doors and chests, and, of course, fending off   *"
@@ -115,7 +112,7 @@ public class StartProgramView {
         
     }
 
-    private String getPlayersName() {
+    public String getPlayersName() {
         boolean valid = false; // indicates if the name has been retrieved
         String playersName = null;
         Scanner keyboard = new Scanner(System.in); // keyboard input stream
@@ -123,7 +120,7 @@ public class StartProgramView {
         while (!valid) { // while a valid name has not been retrieved
             
             // prompt for the player's name
-            System.out.println("\nEnter your name, thief:");
+            System.out.print("\nEnter your name, thief: ");
             
             // get the name from the keyboard and trim off the blanks
             playersName = keyboard.nextLine();
