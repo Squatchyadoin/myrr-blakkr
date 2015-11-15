@@ -6,12 +6,13 @@ package byui.cit260.myrrBlakkr.view;
 
 import byui.cit260.myrrBlakkr.control.Controls;
 import byui.cit260.myrrBlakkr.control.GameControl;
+import byui.cit260.myrrBlakkr.control.ProgramControl;
 import byui.cit260.myrrBlakkr.model.Player;
 import myrrblakkr.MyrrBlakkr;
 
 public class MainMenuView extends View {
     
-    private Player currentPlayer;
+    //private Player currentPlayer;
 
     public MainMenuView() {
         super("\n"
@@ -34,7 +35,7 @@ public class MainMenuView extends View {
         
         switch (selection) {
             case 'N':                       // create and start a new game            
-                this.newGame();
+                this.startNewGame();
                 break;
             case 'H':            
                 this.displayHelpMenu();     // display the Help menu
@@ -53,21 +54,21 @@ public class MainMenuView extends View {
         return false;
     }
 
-    private void newGame() {                                                    
-        GameControl.newGame(MyrrBlakkr.getPlayer());    // create a new game
-        GameMenuView gameMenu = new GameMenuView();     
-        gameMenu.display();                             // display the Game menu for the current player
+    private void startNewGame() {                                                    
+        GameControl.createNewGame(MyrrBlakkr.getPlayer());      // create a new game
+        GameMenuView gameMenu = new GameMenuView();             // create a new Game menu
+        gameMenu.display();                                     // display the new Game menu
     }
 
     private void displayHelpMenu() {        
-        HelpMenuView helpMenu = new HelpMenuView();     // create a new Help menu
-        helpMenu.display();                             // display the Help menu
+        HelpMenuView helpMenu = new HelpMenuView();             // create a new Help menu
+        helpMenu.display();                                     // display the Help menu
     }
 
     private void saveGame() {
-        GameControl.saveGame(MyrrBlakkr.getCurrentGame());    // save the game
+        GameControl.saveGame(MyrrBlakkr.getCurrentGame());      // save the game
         GameMenuView gameMenu = new GameMenuView();
-        gameMenu.display();                                   // display the Game menu
+        gameMenu.display();                                     // display the Game menu
         //gameMenu.display(currentPlayer);
     }
 

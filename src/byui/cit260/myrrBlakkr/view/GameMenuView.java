@@ -5,7 +5,7 @@
  */
 package byui.cit260.myrrBlakkr.view;
 
-//import byui.cit260.myrrBlakkr.control.GameControl;
+//import byui.cit260.myrrBlakkr.control.ProgramControl;
 import byui.cit260.myrrBlakkr.model.Player;
 
 

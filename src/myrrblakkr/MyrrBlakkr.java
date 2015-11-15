@@ -14,7 +14,7 @@ import byui.cit260.myrrBlakkr.model.MonsterNPC;
 import byui.cit260.myrrBlakkr.model.NormalScene;
 import byui.cit260.myrrBlakkr.model.Player;             // needed for each class referenced from another package. L3, pg 18
 import byui.cit260.myrrBlakkr.model.TrapScene;
-import byui.cit260.myrrBlakkr.view.StartProgramView; // only import statement needed in final draft
+import byui.cit260.myrrBlakkr.view.StartProgramView;    // only import statement needed in final draft
 
 /**
  *
@@ -22,8 +22,8 @@ import byui.cit260.myrrBlakkr.view.StartProgramView; // only import statement ne
  */
 public class MyrrBlakkr {
     
-    private static Game currentGame = null;
     private static Player player = null;
+    private static Game currentGame = null;
 
     /**
      * @param args the command line arguments
@@ -94,8 +94,7 @@ public class MyrrBlakkr {
         Game gameOne = new Game(); // creates a new object instance
 
         // programmer-developed info for testing purposes
-        gameOne.setTotalTime(15.35);        
-        gameOne.setNoPeople(4);        
+        gameOne.setTotalTime(15.35);                
 
         // calling toString() function returns a string representation of the values of all the object instance variables created for the gameOne object and saves the values in a String type variable, gameInfo
         String gameInfo = gameOne.toString();
@@ -105,8 +104,8 @@ public class MyrrBlakkr {
         Map mapOne = new Map(); // creates a new object instance
 
         // programmer-developed info for testing purposes
-        mapOne.setDungeonLevelCount(3);        
-        mapOne.setDungeonRoomCount(26);     
+        mapOne.setDungeonLevel("L1");        
+        mapOne.setDungeonRoomNumber(7);     
 
         // calling toString() function returns a string representation of the values of all the object instance variables created for the mapOne object and saves the values in a String type variable, mapInfo
         String mapInfo = mapOne.toString();
@@ -173,6 +172,14 @@ public class MyrrBlakkr {
     
     
     // Getter & Setter 
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        MyrrBlakkr.player = player;
+    }
+    
     public static Game getCurrentGame() {
         return currentGame;
     }
@@ -180,15 +187,6 @@ public class MyrrBlakkr {
     public static void setCurrentGame(Game currentGame) {
         MyrrBlakkr.currentGame = currentGame;
     }
-
-    public static Player getPlayer() {
-        return player;
-    }
-
-    public static void setPlayer(Player player) {
-        MyrrBlakkr.player = player;
-    }    
-    
     
 }
 

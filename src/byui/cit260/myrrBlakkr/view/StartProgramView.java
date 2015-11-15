@@ -20,9 +20,7 @@ public class StartProgramView {
         
         // Prompt the player to enter a name
         // Retrieve the name of the player
-        String playersName = this.getPlayersName();
-        if (playersName == null) // IF user wants to quit the game
-            return; // THEN exit the game
+        String playersName = this.getPlayersName();        
         
         // Create the player object and save it in the ProgramControl class
         Player player = ProgramControl.createPlayer(playersName);
@@ -111,30 +109,27 @@ public class StartProgramView {
         System.out.println("*************************************************************");
         
     }
-
+  
     public String getPlayersName() {
-        boolean valid = false; // indicates if the name has been retrieved
+        boolean valid = false;                              // indicates if the name has been retrieved
         String playersName = null;
-        Scanner keyboard = new Scanner(System.in); // keyboard input stream
+        Scanner keyboard = new Scanner(System.in);          // keyboard input stream
         
-        while (!valid) { // while a valid name has not been retrieved
+        while (!valid) {                                    // while a valid name has not been retrieved            
             
-            // prompt for the player's name
-            System.out.print("\nEnter your name, thief: ");
+            System.out.println("\nWho dares enter the ruins of Myrr Blakkr?!");
+            System.out.print("\nEnter your name, thief: "); // prompt for the player's name            
             
-            // get the name from the keyboard and trim off the blanks
-            playersName = keyboard.nextLine();
-            playersName = playersName.trim();
+            playersName = keyboard.nextLine();              // get the name from the keyboard
+            playersName = playersName.trim();               // trim off the blanks            
             
-            // if the name is invalid (< 1 char in length)
-            if (playersName.length() < 2) {
+            if (playersName.length() < 2) {                 // if the name is invalid (< 1 char in length)
                 System.out.println("[Invalid name - the name cannot be blank]");
-                continue; // and repeat the loop again
+                continue;                                   // and repeat the loop again
             }
-            break; // breaks out of the loop            
-        }
-        
-        return playersName; // return the name
+            break;                                          // breaks out of the loop
+        }        
+        return playersName;                                 // return the name
     }
 
     private void displayWelcomeMessage(Player player) {        

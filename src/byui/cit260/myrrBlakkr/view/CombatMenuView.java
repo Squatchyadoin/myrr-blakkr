@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public class CombatMenuView extends View {
     
-    private Player currentPlayer;
+    //private Player currentPlayer;
 
     public CombatMenuView() {
         super("\n"
