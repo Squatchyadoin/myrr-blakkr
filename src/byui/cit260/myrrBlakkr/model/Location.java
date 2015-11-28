@@ -6,6 +6,8 @@
 package byui.cit260.myrrBlakkr.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -13,62 +15,102 @@ import java.io.Serializable;
  */
 public class Location implements Serializable {
     
-    // class instance variables
-    private int currentDungeonLevel;
-    private int currentDungeonRoomNumber;
-    private boolean currentRoomVisited;
-    private int unvisitedRoomsRemaining;   
+    private int row;
+    private int column;
+    private boolean visited;
+    private Scene scene;
+    private ArrayList<Enemy> enemies;
+    private ArrayList<Trap> traps;
+    private ArrayList<Lock> locks;
+    private ArrayList<TreasureCache> caches;
+    
    
-    // default constructor method
+    // constructor
     public Location() {
     }
     
 
-    // getter() and setter()
-    public int getCurrentDungeonLevel() {
-        return currentDungeonLevel;
+    // Getter() and Setter()
+    public int getRow() {
+        return row;
     }
 
-    public void setCurrentDungeonLevel(int currentDungeonLevel) {
-        this.currentDungeonLevel = currentDungeonLevel;
+    public void setRow(int row) {
+        this.row = row;
     }
 
-    public int getCurrentDungeonRoomNumber() {
-        return currentDungeonRoomNumber;
+    public int getColumn() {
+        return column;
     }
 
-    public void setCurrentDungeonRoomNumber(int currentDungeonRoomNumber) {
-        this.currentDungeonRoomNumber = currentDungeonRoomNumber;
+    public void setColumn(int column) {
+        this.column = column;
     }
 
-    public boolean isCurrentRoomVisited() {
-        return currentRoomVisited;
+    public boolean isVisited() {
+        return visited;
     }
 
-    public void setCurrentRoomVisited(boolean currentRoomVisited) {
-        this.currentRoomVisited = currentRoomVisited;
+    public void setVisited(boolean visited) {
+        this.visited = visited;
     }
 
-    public int getUnvisitedRoomsRemaining() {
-        return unvisitedRoomsRemaining;
+    public Scene getScene() {
+        return scene;
     }
 
-    public void setUnvisitedRoomsRemaining(int unvisitedRoomsRemaining) {
-        this.unvisitedRoomsRemaining = unvisitedRoomsRemaining;
+    public void setScene(Scene scene) {
+        this.scene = scene;
     }
+
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public void setEnemies(ArrayList<Enemy> enemies) {
+        this.enemies = enemies;
+    }
+
+    public ArrayList<Trap> getTraps() {
+        return traps;
+    }
+
+    public void setTraps(ArrayList<Trap> traps) {
+        this.traps = traps;
+    }
+
+    public ArrayList<Lock> getLocks() {
+        return locks;
+    }
+
+    public void setLocks(ArrayList<Lock> locks) {
+        this.locks = locks;
+    }
+
+    public ArrayList<TreasureCache> getCaches() {
+        return caches;
+    }
+
+    public void setCaches(ArrayList<TreasureCache> caches) {
+        this.caches = caches;
+    }
+
+    
+
+    
 
     @Override
     public String toString() {
-        return "Location{" + "currentDungeonLevel=" + currentDungeonLevel + ", currentDungeonRoomNumber=" + currentDungeonRoomNumber + ", currentRoomVisited=" + currentRoomVisited + ", unvisitedRoomsRemaining=" + unvisitedRoomsRemaining + '}';
+        return "Location{" + "row=" + row + ", column=" + column + ", visited=" + visited + ", scene=" + scene + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 11 * hash + this.currentDungeonLevel;
-        hash = 11 * hash + this.currentDungeonRoomNumber;
-        hash = 11 * hash + (this.currentRoomVisited ? 1 : 0);
-        hash = 11 * hash + this.unvisitedRoomsRemaining;
+        int hash = 3;
+        hash = 97 * hash + this.row;
+        hash = 97 * hash + this.column;
+        hash = 97 * hash + (this.visited ? 1 : 0);
+        hash = 97 * hash + Objects.hashCode(this.scene);        
         return hash;
     }
 
@@ -81,20 +123,20 @@ public class Location implements Serializable {
             return false;
         }
         final Location other = (Location) obj;
-        if (this.currentDungeonLevel != other.currentDungeonLevel) {
+        if (this.row != other.row) {
             return false;
         }
-        if (this.currentDungeonRoomNumber != other.currentDungeonRoomNumber) {
+        if (this.column != other.column) {
             return false;
         }
-        if (this.currentRoomVisited != other.currentRoomVisited) {
+        if (this.visited != other.visited) {
             return false;
         }
-        if (this.unvisitedRoomsRemaining != other.unvisitedRoomsRemaining) {
+        if (!Objects.equals(this.scene, other.scene)) {
             return false;
-        }
+        }        
         return true;
     }
-        
+       
     
 }

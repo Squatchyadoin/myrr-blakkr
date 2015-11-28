@@ -10,7 +10,6 @@ import byui.cit260.myrrBlakkr.model.FightScene;
 import byui.cit260.myrrBlakkr.model.Game;
 import byui.cit260.myrrBlakkr.model.Location;
 import byui.cit260.myrrBlakkr.model.Map;
-import byui.cit260.myrrBlakkr.model.MonsterNPC;
 import byui.cit260.myrrBlakkr.model.NormalScene;
 import byui.cit260.myrrBlakkr.model.Player;             // needed for each class referenced from another package. L3, pg 18
 import byui.cit260.myrrBlakkr.model.TrapScene;
@@ -50,45 +49,32 @@ public class MyrrBlakkr {
         // programmer-developed info for testing purposes
         playerOne.setName("Nimblefingers");
         playerOne.setGameTime(24.47);
-        playerOne.setHealthPoints(27);
-        playerOne.setExperiencePoints(375);
-        playerOne.setTreasureValue(211);
-        playerOne.setAttackRating(16);
-        playerOne.setDefenseRating(18);
-        playerOne.setPlayerInventory("Short Sword of the Leech, Nightskin, Ring of Power, Ring of Loose Fingers, Lockpick Kit, Torch, Oil Flask");
+        playerOne.setHealth(27);
+        playerOne.setExperience(375);
+        playerOne.setTreasure(211);
+        playerOne.setBaseAttack(16);
+        playerOne.setBaseDefense(18);
+        //playerOne.setInventory[];
 
         // calling toString() function returns a string representation of the contents of the object(s) created from the playerNPC class and saves the values in a String type variable, playerInfo
         String playerInfo = playerOne.toString();
         System.out.println(playerInfo); // displays results to the console. L3, pg 19
-
         
-        Enemy npcOne = new Enemy(); // creates a new instance of the Enemy class
-
+        
+        
+        Enemy enemyOne = new Enemy(); // creates a new instance of the Enemy class        
+        
         // programmer-developed info for testing purposes
-        npcOne.setName("Heimdall");
-        npcOne.setCharacterClass("Fighter");
-        npcOne.setAttackStyle("Flamberge +1");
-        npcOne.setHealthPoints(37);        
-        npcOne.setAttackRating(17);
-        npcOne.setDefenseRating(14);
+        enemyOne.setType("Wererat");        
+        //enemyOne.setEnemyWeapon[0];
+        enemyOne.setHealth(44);        
+        enemyOne.setAttack(14);
+        enemyOne.setDefense(10);
 
-        // calling toString() function returns a string representation of the values of all the object instance variables created for the npcOne object and saves the values in a String type variable, npcInfo
-        String npcInfo = npcOne.toString();
-        System.out.println(npcInfo); // displays results to the console. L3, pg 19
+        // calling toString() function returns a string representation of the values of all the object instance variables created for the enemyOne object and saves the values in a String type variable, monsterInfo
+        String enemyInfo = enemyOne.toString();
+        System.out.println(enemyInfo); // displays results to the console
         
-        
-        MonsterNPC monsterOne = new MonsterNPC(); // creates a new object instance
-
-        // programmer-developed info for testing purposes
-        monsterOne.setType("Wererat");        
-        monsterOne.setAttackStyle("Claws");
-        monsterOne.setHealthPoints(44);        
-        monsterOne.setAttackRating(14);
-        monsterOne.setDefenseRating(10);
-
-        // calling toString() function returns a string representation of the values of all the object instance variables created for the monsterOne object and saves the values in a String type variable, monsterInfo
-        String monsterInfo = monsterOne.toString();
-        System.out.println(monsterInfo); // displays results to the console
         
         
         Game gameOne = new Game(); // creates a new object instance
@@ -101,28 +87,30 @@ public class MyrrBlakkr {
         System.out.println(gameInfo); // displays results to the console        
         
         
+        
         Map mapOne = new Map(); // creates a new object instance
 
         // programmer-developed info for testing purposes
-        mapOne.setDungeonLevel("L1");        
-        mapOne.setDungeonRoomNumber(7);     
+        mapOne.setNumOfRows(1);        
+        mapOne.setNumOfColumns(7);     
 
         // calling toString() function returns a string representation of the values of all the object instance variables created for the mapOne object and saves the values in a String type variable, mapInfo
         String mapInfo = mapOne.toString();
         System.out.println(mapInfo); // displays results to the console   
         
         
+        
         Location locationOne = new Location(); // creates a new object instance
 
         // programmer-developed info for testing purposes
-        locationOne.setCurrentDungeonLevel(2);
-        locationOne.setCurrentDungeonRoomNumber(6);
-        locationOne.setCurrentRoomVisited(false);
-        locationOne.setUnvisitedRoomsRemaining(26);     
+        locationOne.setRow(2);
+        locationOne.setColumn(6);
+        locationOne.setVisited(false);        
 
         // calling toString() function returns a string representation of the values of all the object instance variables created for the locationOne object and saves the values in a String type variable, locationInfo
         String locationInfo = locationOne.toString();
         System.out.println(locationInfo); // displays results to the console
+        
         
         
         FightScene fightSceneOne = new FightScene(); // creates a new object instance
@@ -139,6 +127,7 @@ public class MyrrBlakkr {
         System.out.println(fightSceneInfo); // displays results to the console
         
         
+        
         TrapScene trapSceneOne = new TrapScene(); // creates a new object instance
 
         // programmer-developed info for testing purposes
@@ -150,6 +139,7 @@ public class MyrrBlakkr {
         // calling toString() function returns a string representation of the values of all the object instance variables created for the trapSceneOne object and saves the values in a String type variable, TrapSceneInfo
         String trapSceneInfo = trapSceneOne.toString();
         System.out.println(trapSceneInfo); // displays results to the console
+        
         
         
         NormalScene normalSceneOne = new NormalScene(); // creates a new object instance

@@ -6,6 +6,10 @@
 package byui.cit260.myrrBlakkr.view;
 
 //import byui.cit260.myrrBlakkr.control.ProgramControl;
+import byui.cit260.myrrBlakkr.control.GameControl;
+import byui.cit260.myrrBlakkr.model.InventoryItem;
+import byui.cit260.myrrBlakkr.model.Location;
+import byui.cit260.myrrBlakkr.model.Map;
 import byui.cit260.myrrBlakkr.model.Player;
 
 
@@ -13,16 +17,15 @@ import byui.cit260.myrrBlakkr.model.Player;
  *
  * @author Family
  */
-public class GameMenuView extends View {
+public class GameMenuView extends View {    
     
-    //private Player currentPlayer;
-
     public GameMenuView() {        
         super("\n"
             + "\n-------------------------------------------------------------"
             + "\n|                         Game Menu                         |"
             + "\n-------------------------------------------------------------"
-            + "\n| S -  Search room/area                                     |"            
+            + "\n| S -  Search room/area                                     |"
+            + "\n| C -  View character sheet                                 |"            
             + "\n| I -  View inventory                                       |"
             + "\n| P -  Pick up item                                         |"            
             + "\n| U -  Use item                                             |"
@@ -39,38 +42,41 @@ public class GameMenuView extends View {
     @Override
     public boolean doAction(Object obj) {        
         String value = (String) obj;        
-        value = value.toUpperCase();        // convert to all upper case
-        char selection = value.charAt(0);   // get first character entered
+        value = value.toUpperCase();            // convert to all upper case
+        char selection = value.charAt(0);       // get first character entered
         
         switch (selection) {
-            case 'S':                       // search a room or area
+            case 'S':                           // search a room or area
                 this.searchRoom();
                 break;
-            case 'I':
-                this.displayInventoryMenu();
+            case 'C':                           // display character sheet
+                this.displayCharacterSheet();   
+                break;    
+            case 'I':                           // display inventory
+                this.displayInventory();
                 break;
-            case 'P':
+            case 'P':                           // pick up item
                 this.pickUpItem();
                 break;
-            case 'U':
+            case 'U':                           // use item
                 this.useItem();
                 break;
-            case 'L':
+            case 'L':                           // display Lock menu
                 this.displayLockMenu();
                 break;
-            case 'T':
+            case 'T':                           // display Trap menu
                 this.displayTrapMenu();
                 break;
-            case 'M':
-                this.displayMapMenu();
+            case 'M':                           // display map
+                //this.displayMap();
                 break;
-            case 'F':
+            case 'F':                           // display Combat menu
                 this.displayCombatMenu();
                 break;
-            case 'H':
+            case 'H':                           // display Help menu
                 this.displayHelpMenu();
                 break;
-            case 'Q':
+            case 'Q':                           // quit to Main menu
                 return true;
             default:
                 System.out.println("\n*** Invalid selection *** Try again");
@@ -83,9 +89,27 @@ public class GameMenuView extends View {
     private void searchRoom() {
         System.out.println("*** searchRoom function called ***");
     }
+    
+    private void displayCharacterSheet() {
+        System.out.println("*** displayCharacterSheet function called ***");
+    }
 
-    private void displayInventoryMenu() {
-        System.out.println("*** displayInventoryMenu function called ***");
+    private void displayInventory() {
+        // get the sorted list of inventory items for the current game
+        InventoryItem[] inventory = GameControl.getSortedInventoryList();
+        
+        System.out.println("\nList of Inventory Items");
+        System.out.println("Description" + "\t" +
+                           "Required" + "\t" + 
+                           "In Stock");
+        
+        // for each inventory item
+        for (InventoryItem inventoryItem : inventory) {
+            // display the description, the required amount and quantity in stock
+            System.out.println(inventoryItem.getDescription() + "\t     " +
+                               inventoryItem.getRequiredAmount() + "\t      " +
+                               inventoryItem.getQuantityInStock());
+        }
     }
 
     private void pickUpItem() {
@@ -105,11 +129,32 @@ public class GameMenuView extends View {
         TrapMenuView trapMenu = new TrapMenuView();
         trapMenu.displayMenu();
     }
-
-    private void displayMapMenu() {
-        System.out.println("*** displayMapMenu function called ***");
+/*
+    private void displayMap() {
+        
+        // get a 2-D array of Location objects from the current game
+        Location[][] locations = map.getLocations();
+        
+        System.out.println("\nGame Map");
+        System.out.println("Col1" + "\t" +
+                           "Col2" + "\t" + 
+                           "Col3" + "\t" + 
+                           "Col4" + "\t" + 
+                           "Col5" + "\t" + 
+                           "Col6" + "\t" + 
+                           "Col7" + "\t" + 
+                           "Col8" + "\t" + 
+                           "Col9");
+        
+        // for each row in the map
+        for (InventoryItem inventoryItem : inventory) {
+            // display the description, the required amount and quantity in stock
+            System.out.println(inventoryItem.getDescription() + "\t     " +
+                               inventoryItem.getRequiredAmount() + "\t      " +
+                               inventoryItem.getQuantityInStock());
+        }
     }
-
+*/
     private void displayCombatMenu() {
         // display the Combat menu
         CombatMenuView combatMenu = new CombatMenuView();
@@ -122,5 +167,6 @@ public class GameMenuView extends View {
         HelpMenuView helpMenu = new HelpMenuView();
         helpMenu.display();
     }
+
 
 }

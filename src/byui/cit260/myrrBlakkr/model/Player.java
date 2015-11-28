@@ -5,7 +5,10 @@
  */
 package byui.cit260.myrrBlakkr.model;
 
+import byui.cit260.myrrBlakkr.control.CalculationUtilities;
+import java.awt.Point;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -13,27 +16,63 @@ import java.util.Objects;
  * @author Family
  */
 public class Player implements Serializable {
-    
+
     // class instance variables
     private String name;
     private double gameTime;
-    private int healthPoints;
-    private int experiencePoints;
-    private int treasureValue;
-    private int attackRating;
-    private int defenseRating;
-    private String playerInventory;
-    
+    private int strength;
+    private int dexterity;
+    private int constitution;
+    private int health;
+    private int experience;
+    private int treasure;
+    private int baseAttack;
+    private int baseDefense;
+    private InventoryItem[] inventory;
+    private Point coordinates;
+
     // default constructor function
     public Player() {
+    /*    this.name = null;
+        
+        this.gameTime = 0;
+        
+        int strength = 0;
+        for (int i = 0; i < 3; i++) {
+            strength += CalculationUtilities.rolld6();
+        }
+        this.strength = strength;
+        
+        int dexterity = 0;
+        for (int i = 0; i < 3; i++){
+            dexterity += CalculationUtilities.rolld6();
+        }
+        this.constitution = constitution;
+        
+        int constitution = 0;
+        for (int i = 0; i < 3; i++){
+            constitution += CalculationUtilities.rolld6();
+        }
+        this.constitution = constitution;
+        
+        this.health = 0;
+        
+        this.experience = 0;
+        
+        this.treasure = 0;
+        
+        this.baseAttack = 0;
+        
+        this.baseDefense = 0;
+     */   
     }
 
+    // Getter() and Setter()
+    // (How other classes access private variables to create an object instance. L3, pg 8-10)
     public String getName() {
         return name;
     }
-    
-    // getter and setter functions
-    // (How other classes access private variables to create an object instance. L3, pg 8-10)
+
     public void setName(String name) {
         this.name = name;
     }
@@ -46,70 +85,106 @@ public class Player implements Serializable {
         this.gameTime = gameTime;
     }
 
-    public int getHealthPoints() {
-        return healthPoints;
+    public int getStrength() {
+        return strength;
     }
 
-    public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 
-    public int getExperiencePoints() {
-        return experiencePoints;
+    public int getDexterity() {
+        return dexterity;
     }
 
-    public void setExperiencePoints(int experiencePoints) {
-        this.experiencePoints = experiencePoints;
+    public void setDexterity(int dexterity) {
+        this.dexterity = dexterity;
+    }
+    
+    public int getConstitution() {
+        return constitution;
     }
 
-    public int getTreasureValue() {
-        return treasureValue;
+    public void setConstitution(int constitution) {
+        this.constitution = constitution;
     }
 
-    public void setTreasureValue(int treasureValue) {
-        this.treasureValue = treasureValue;
+    public int getHealth() {
+        return health;
     }
 
-    public int getAttackRating() {
-        return attackRating;
+    public void setHealth(int health) {
+        this.health = health;
     }
 
-    public void setAttackRating(int attackRating) {
-        this.attackRating = attackRating;
+    public int getExperience() {
+        return experience;
     }
 
-    public int getDefenseRating() {
-        return defenseRating;
+    public void setExperience(int experience) {
+        this.experience = experience;
     }
 
-    public void setDefenseRating(int defenseRating) {
-        this.defenseRating = defenseRating;
+    public int getTreasure() {
+        return treasure;
     }
 
-    public String getPlayerInventory() {
-        return playerInventory;
+    public void setTreasure(int treasure) {
+        this.treasure = treasure;
     }
 
-    public void setPlayerInventory(String playerInventory) {
-        this.playerInventory = playerInventory;
+    public int getBaseAttack() {
+        return baseAttack;
+    }
+
+    public void setBaseAttack(int baseAttack) {
+        this.baseAttack = baseAttack;
+    }
+
+    public int getBaseDefense() {
+        return baseDefense;
+    }
+
+    public void setBaseDefense(int baseDefense) {
+        this.baseDefense = baseDefense;
+    }
+
+    public InventoryItem[] getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(InventoryItem[] inventory) {
+        this.inventory = inventory;
+    }
+
+    public Point getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(Point coordinates) {
+        this.coordinates = coordinates;
     }
 
     @Override
     public String toString() {
-        return "Player{" + "name=" + name + ", gameTime=" + gameTime + ", healthPoints=" + healthPoints + ", experiencePoints=" + experiencePoints + ", treasureValue=" + treasureValue + ", attackRating=" + attackRating + ", defenseRating=" + defenseRating + ", playerInventory=" + playerInventory + '}';
+        return "Player{" + "name=" + name + ", gameTime=" + gameTime + ", strength=" + strength + ", dexterity=" + dexterity + ", constitution=" + constitution + ", health=" + health + ", experience=" + experience + ", treasure=" + treasure + ", baseAttack=" + baseAttack + ", baseDefense=" + baseDefense + ", inventory=" + inventory + ", coordinates=" + coordinates + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + Objects.hashCode(this.name);
-        hash = 67 * hash + (int) (Double.doubleToLongBits(this.gameTime) ^ (Double.doubleToLongBits(this.gameTime) >>> 32));
-        hash = 67 * hash + this.healthPoints;
-        hash = 67 * hash + this.experiencePoints;
-        hash = 67 * hash + this.treasureValue;
-        hash = 67 * hash + this.attackRating;
-        hash = 67 * hash + this.defenseRating;
-        hash = 67 * hash + Objects.hashCode(this.playerInventory);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.name);
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.gameTime) ^ (Double.doubleToLongBits(this.gameTime) >>> 32));
+        hash = 97 * hash + this.strength;
+        hash = 97 * hash + this.dexterity;
+        hash = 97 * hash + this.constitution;
+        hash = 97 * hash + this.health;
+        hash = 97 * hash + this.experience;
+        hash = 97 * hash + this.treasure;
+        hash = 97 * hash + this.baseAttack;
+        hash = 97 * hash + this.baseDefense;
+        hash = 97 * hash + Arrays.deepHashCode(this.inventory);
+        hash = 97 * hash + Objects.hashCode(this.coordinates);
         return hash;
     }
 
@@ -128,27 +203,37 @@ public class Player implements Serializable {
         if (Double.doubleToLongBits(this.gameTime) != Double.doubleToLongBits(other.gameTime)) {
             return false;
         }
-        if (this.healthPoints != other.healthPoints) {
+        if (this.strength != other.strength) {
             return false;
         }
-        if (this.experiencePoints != other.experiencePoints) {
+        if (this.dexterity != other.dexterity) {
             return false;
         }
-        if (this.treasureValue != other.treasureValue) {
+        if (this.constitution != other.constitution) {
             return false;
         }
-        if (this.attackRating != other.attackRating) {
+        if (this.health != other.health) {
             return false;
         }
-        if (this.defenseRating != other.defenseRating) {
+        if (this.experience != other.experience) {
             return false;
         }
-        if (!Objects.equals(this.playerInventory, other.playerInventory)) {
+        if (this.treasure != other.treasure) {
+            return false;
+        }
+        if (this.baseAttack != other.baseAttack) {
+            return false;
+        }
+        if (this.baseDefense != other.baseDefense) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.inventory, other.inventory)) {
+            return false;
+        }
+        if (!Objects.equals(this.coordinates, other.coordinates)) {
             return false;
         }
         return true;
     }
 
-       
-    
 }

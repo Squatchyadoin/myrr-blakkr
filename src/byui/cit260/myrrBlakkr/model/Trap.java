@@ -12,15 +12,28 @@ import java.util.Objects;
  *
  * @author James
  */
-public class Trap implements Serializable{
+public enum Trap implements Serializable{
+    
+    Gas("\nSuddenly, the door swings shut! You hear a slight hiss and notice small holes in "
+        + "\neach corner of the room that begin to release a poisonous gas. Within moments "
+        + "\nyou begin to feel dizzy and you notice it's now difficult to breathe."),
+    Acid(""),
+    Dart(""),
+    Fireball(""),
+    Spear(""),
+    Stone(""),
+    Blade("");
+    
     
     //class attributes
-    private String description;
-    private String type;
-    private int difficulty;
-    private String damageRating;
+    private final String description;
+    //private final int difficulty;
+    //private final String damageRating;
 
-    public Trap() {
+    Trap (String description) {
+        this.description = description;
+        //this.difficulty(1);
+        //this.damageRating("easy");
     }
     
     
@@ -28,74 +41,13 @@ public class Trap implements Serializable{
     public String getDescription() {
         return description;
     }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
+/*
     public int getDifficulty() {
         return difficulty;
-    }
-
-    public void setDifficulty(int difficulty) {
-        this.difficulty = difficulty;
     }
 
     public String getDamageRating() {
         return damageRating;
     }
-
-    public void setDamageRating(String damageRating) {
-        this.damageRating = damageRating;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.description);
-        hash = 59 * hash + Objects.hashCode(this.type);
-        hash = 59 * hash + this.difficulty;
-        hash = 59 * hash + Objects.hashCode(this.damageRating);
-        return hash;
-    }
-
-    @Override
-    public String toString() {
-        return "Trap{" + "description=" + description + ", type=" + type + ", difficulty=" + difficulty + ", damageRating=" + damageRating + '}';
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Trap other = (Trap) obj;
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        if (!Objects.equals(this.type, other.type)) {
-            return false;
-        }
-        if (this.difficulty != other.difficulty) {
-            return false;
-        }
-        if (!Objects.equals(this.damageRating, other.damageRating)) {
-            return false;
-        }
-        return true;
-    }
-    
-    
-    
+*/
 }

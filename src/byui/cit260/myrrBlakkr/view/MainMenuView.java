@@ -4,10 +4,7 @@
 
 package byui.cit260.myrrBlakkr.view;
 
-import byui.cit260.myrrBlakkr.control.Controls;
 import byui.cit260.myrrBlakkr.control.GameControl;
-import byui.cit260.myrrBlakkr.control.ProgramControl;
-import byui.cit260.myrrBlakkr.model.Player;
 import myrrblakkr.MyrrBlakkr;
 
 public class MainMenuView extends View {
@@ -37,13 +34,14 @@ public class MainMenuView extends View {
             case 'N':                       // create and start a new game            
                 this.startNewGame();
                 break;
-            case 'H':            
-                this.displayHelpMenu();     // display the Help menu
+            case 'H':                       // display the Help menu            
+                this.displayHelpMenu();     
                 break;
-            case 'S':            
-                this.saveGame();            // save the game
-            case 'L':            
-                this.loadGame();            // load a saved game
+            case 'S':                       // save the game
+                this.saveGame();
+                break;
+            case 'L':                       // load a saved game
+                this.loadGame();            
                 break;
             case 'Q':                       // quit the game
                 return true;
@@ -67,9 +65,8 @@ public class MainMenuView extends View {
 
     private void saveGame() {
         GameControl.saveGame(MyrrBlakkr.getCurrentGame());      // save the game
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.display();                                     // display the Game menu
-        //gameMenu.display(currentPlayer);
+        GameMenuView gameMenu = new GameMenuView();             // create a new Game menu
+        gameMenu.display();                                     // display the Game menu        
     }
 
     private void loadGame() {

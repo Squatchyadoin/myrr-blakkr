@@ -15,22 +15,23 @@ import java.util.Objects;
 public class InventoryItem implements Serializable{
     
     //class instance variables
-    private String inventoryType;
+    private String description;
     private int quantityInStock;
     private int requiredAmount;
-    private String itemEquipped;
+    private boolean itemEquipped;
 
+    // default constructor
     public InventoryItem() {
     }
     
     
-
-    public String getInventoryType() {
-        return inventoryType;
+    // Getter() and Setter()
+    public String getDescription() {
+        return description;
     }
 
-    public void setInventoryType(String inventoryType) {
-        this.inventoryType = inventoryType;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getQuantityInStock() {
@@ -49,27 +50,27 @@ public class InventoryItem implements Serializable{
         this.requiredAmount = requiredAmount;
     }
 
-    public String getItemEquipped() {
+    public boolean getItemEquipped() {
         return itemEquipped;
     }
 
-    public void setItemEquipped(String itemEquipped) {
+    public void setItemEquipped(boolean itemEquipped) {
         this.itemEquipped = itemEquipped;
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.inventoryType);
-        hash = 47 * hash + this.quantityInStock;
-        hash = 47 * hash + this.requiredAmount;
-        hash = 47 * hash + Objects.hashCode(this.itemEquipped);
-        return hash;
+    public String toString() {
+        return "InventoryItem{" + "description=" + description + ", quantityInStock=" + quantityInStock + ", requiredAmount=" + requiredAmount + ", itemEquipped=" + itemEquipped + '}';
     }
 
     @Override
-    public String toString() {
-        return "InventoryItem{" + "inventoryType=" + inventoryType + ", quantityInStock=" + quantityInStock + ", requiredAmount=" + requiredAmount + ", itemEquipped=" + itemEquipped + '}';
+    public int hashCode() {
+        int hash = 5;
+        hash = 31 * hash + Objects.hashCode(this.description);
+        hash = 31 * hash + this.quantityInStock;
+        hash = 31 * hash + this.requiredAmount;
+        hash = 31 * hash + (this.itemEquipped ? 1 : 0);
+        return hash;
     }
 
     @Override
@@ -81,7 +82,7 @@ public class InventoryItem implements Serializable{
             return false;
         }
         final InventoryItem other = (InventoryItem) obj;
-        if (!Objects.equals(this.inventoryType, other.inventoryType)) {
+        if (!Objects.equals(this.description, other.description)) {
             return false;
         }
         if (this.quantityInStock != other.quantityInStock) {
@@ -90,12 +91,11 @@ public class InventoryItem implements Serializable{
         if (this.requiredAmount != other.requiredAmount) {
             return false;
         }
-        if (!Objects.equals(this.itemEquipped, other.itemEquipped)) {
+        if (this.itemEquipped != other.itemEquipped) {
             return false;
         }
         return true;
-    }
-    
+    } 
     
     
 }
